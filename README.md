@@ -12,9 +12,11 @@ Organizado por **unidades** e **aulas**, com exercícios, scripts em Python e ma
 
 ## 📂 Estrutura do Repositório
 
+- 💻 **disciplina-X** → Pasta correspondente a cada disciplina do curso.
+- 📁 **trabalhos** → Pasta correspondente aos trabalhos da disciplina.
 - 📁 **unidade-X** → Pasta correspondente a cada unidade do curso.
-- 📄 **aula-X** → Scripts, notebooks ou exercícios da aula.
-- 🐍 **.py / .ipynb** → Arquivos de código e experimentos.
+    - 👨‍🏫 **explicacao.md** → Arquivo contendo um explicação lúdica da aula.
+    - 🐍 **aula-X.py** → Scripts, notebooks ou exercícios da aula.
 
 ---
 
@@ -29,8 +31,8 @@ Organizado por **unidades** e **aulas**, com exercícios, scripts em Python e ma
 
 ## 🎯 Objetivo
 
-Organizar os estudos de forma modular, acompanhando o progresso por **unidade** e **aula**,
-facilitando revisões, práticas de **análise de dados, estatística e machine learning**.
+Organizar os estudos de forma modular, acompanhando o progresso por **disciplina**, **unidade** e **aula**.
+Facilitar revisões e práticas de **análise de dados, estatística e machine learning**.
 
 ---
 
