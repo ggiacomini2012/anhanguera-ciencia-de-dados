@@ -1,0 +1,1 @@
+LEITE, V. M. Análise de dados estruturados. Aula 2. In: UNOPAR ANHANGUERA. Estrutura de Dados. [Material de curso]. Unidade  4, Estruturas de Dados Avançados e Análise de Dados. [S. l.]: Anhanguera Unopar, 2025. Acesso restrito.
