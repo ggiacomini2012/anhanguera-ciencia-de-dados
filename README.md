@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 Repositório de estudos e projetos do curso de **Ciência de Dados da Anhanguera**.
-Organizado por **unidades** e **aulas**, com exercícios, scripts em Python e materiais de apoio.
+Organizado por **semestres**, **disciplinas**, **unidades** e **aulas**, com exercícios, scripts em Python e materiais de apoio.
 
 ---
 
@@ -43,6 +43,7 @@ Facilitar revisões e práticas de **análise de dados, estatística e machine l
 - Siga o padrão de pastas `semestre-N/nome-disciplina-Z/unidade-X/aula-Y` para manter o repositório organizado.
 - Atualize o README conforme novas unidades forem adicionadas.
 - Use ambientes virtuais para gerenciar dependências do Python (`venv` ou `conda`).
+- Utilize o conventional commits para manter o repositório legível.
 
 ---
 
