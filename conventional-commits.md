@@ -30,4 +30,4 @@ Conventional Commits é uma convenção simples para padronizar as mensagens dos
 
 Para indicar uma **mudança drástica** (quebra a compatibilidade com versões anteriores), adicione um `!` após o tipo.
 
-`feat!: nova_função_que_quebra_a_api` 💥
+`feat: S1-D2-U1-A3 Adiciona arquivos que exemplificam a aula.` 💥
