@@ -12,11 +12,13 @@ Organizado por **unidades** e **aulas**, com exercícios, scripts em Python e ma
 
 ## 📂 Estrutura do Repositório
 
+- 📅 **semestre-X** → Pasta correspondente a cada semestre do curso.
 - 💻 **disciplina-X** → Pasta correspondente a cada disciplina do curso.
 - 📁 **trabalhos** → Pasta correspondente aos trabalhos da disciplina.
 - 📁 **unidade-X** → Pasta correspondente a cada unidade do curso.
-    - 👨‍🏫 **explicacao.md** → Arquivo contendo um explicação lúdica da aula.
-    - 🐍 **aula-X.py** → Scripts, notebooks ou exercícios da aula.
+
+  - 👨‍🏫 **explicacao.md** → Arquivo contendo um explicação lúdica da aula.
+  - 🐍 **aula-X.py** → Scripts, notebooks ou exercícios da aula.
 
 ---
 
@@ -38,7 +40,7 @@ Facilitar revisões e práticas de **análise de dados, estatística e machine l
 
 ## 💡 Dicas
 
-- Siga o padrão de pastas `nome-disciplina-Z/unidade-X/aula-Y` para manter o repositório organizado.
+- Siga o padrão de pastas `semestre-N/nome-disciplina-Z/unidade-X/aula-Y` para manter o repositório organizado.
 - Atualize o README conforme novas unidades forem adicionadas.
 - Use ambientes virtuais para gerenciar dependências do Python (`venv` ou `conda`).
 
