@@ -21,9 +21,18 @@ if [ -z "$NOME_DISCIPLINA" ]; then
   exit 1
 fi
 
+
+
 # Cria o diretório principal da disciplina
 DIRETORIO_PRINCIPAL="$DESTINO/$NOME_DISCIPLINA"
 mkdir -p "$DIRETORIO_PRINCIPAL"
+
+#Criar diretório de trabalhos
+mkdir -p "$DIRETORIO_PRINCIPAL/trabalhos"
+TRABALHOS="$DIRETORIO_PRINCIPAL/trabalhos"
+mkdir -p "$TRABALHOS/concatenados"
+mkdir -p "$TRABALHOS/feitos"
+mkdir -p "$TRABALHOS/por-fazer"
 
 # Loop para criar as pastas de cada unidade
 for u in $(seq 1 $NUM_UNIDADES); do
