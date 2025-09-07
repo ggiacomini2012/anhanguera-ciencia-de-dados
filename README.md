@@ -47,3 +47,5 @@ Facilitar revisões e práticas de **análise de dados, estatística e machine l
 ---
 
 ✨ **Mantenha a prática constante!** Ciência de Dados é aprendizado contínuo. 🚀
+
+Por: Guilherme Giacomini Teixeira
