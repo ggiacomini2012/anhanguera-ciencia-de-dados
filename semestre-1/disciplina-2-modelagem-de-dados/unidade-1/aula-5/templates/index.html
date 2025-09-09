@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Encomendas - Dona Amélia Bolos</title>
+</head>
+<body>
+    <h1>Encomendas - Dona Amélia Bolos</h1>
+    <a href="{{ url_for('adicionar_encomenda') }}">Adicionar Nova Encomenda</a>
+    <hr>
+    
+    <h2>Lista de Encomendas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Item</th>
+                <th>Quantidade</th>
+                <th>Data de Entrega</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for encomenda in encomendas %}
+            <tr>
+                <td>{{ encomenda['cliente'] }}</td>
+                <td>{{ encomenda['bolo'] }}</td>
+                <td>{{ encomenda['quantidade'] }}</td>
+                <td>{{ encomenda['data_entrega'] }}</td>
+                <td>R$ {{ "%.2f"|format(encomenda['valor']) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

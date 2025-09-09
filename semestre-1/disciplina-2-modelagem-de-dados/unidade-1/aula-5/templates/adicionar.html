@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Encomenda</title>
+</head>
+<body>
+    <h1>Adicionar Nova Encomenda</h1>
+    <form method="POST">
+        <label for="cliente">Nome do Cliente:</label><br>
+        <input type="text" id="cliente" name="cliente" required><br><br>
+
+        <label for="bolo">Nome do Bolo/Salgado:</label><br>
+        <input type="text" id="bolo" name="bolo" required><br><br>
+
+        <label for="quantidade">Quantidade:</label><br>
+        <input type="number" id="quantidade" name="quantidade" required><br><br>
+
+        <label for="data_entrega">Data de Entrega:</label><br>
+        <input type="date" id="data_entrega" name="data_entrega" required><br><br>
+
+        <label for="valor">Valor (R$):</label><br>
+        <input type="number" id="valor" name="valor" step="0.01" required><br><br>
+
+        <input type="submit" value="Salvar Encomenda">
+    </form>
+    <a href="{{ url_for('index') }}">Voltar para a lista</a>
+</body>
+</html>
