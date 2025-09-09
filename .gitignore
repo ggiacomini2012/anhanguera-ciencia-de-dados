@@ -1,0 +1,71 @@
+# =================================================================
+# Arquivo .gitignore para projetos Python e Ciência de Dados
+# =================================================================
+
+# Ambientes Virtuais
+# -----------------------------------------------------------------
+# Nunca adicione seu ambiente virtual ao Git.
+venv/
+env/
+.venv/
+.env/
+
+# Arquivos de Bytecode e Cache do Python
+# -----------------------------------------------------------------
+# Arquivos compilados que o Python gera automaticamente.
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de Distribuição/Pacotes
+# -----------------------------------------------------------------
+# Usados ao criar pacotes Python para distribuição.
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Arquivos de IDEs e Editores
+# -----------------------------------------------------------------
+# Configurações específicas do seu ambiente de desenvolvimento.
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter Notebook
+# -----------------------------------------------------------------
+# Checkpoints automáticos do Jupyter.
+.ipynb_checkpoints
+
+# Bancos de Dados Locais
+# -----------------------------------------------------------------
+# Exemplo para o arquivo do projeto Flask. É uma boa prática não
+# versionar bancos de dados de desenvolvimento.
+*.db
+*.sqlite3
+
+# Relatórios e Logs
+# -----------------------------------------------------------------
+*.log
+
+# Relatórios de Testes e Cobertura
+# -----------------------------------------------------------------
+.coverage
+.cache
+htmlcov/
+.pytest_cache/
+
+# Arquivos de Sistema Operacional
+# -----------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# Arquivos de Dependências (gerenciados por pip)
+# -----------------------------------------------------------------
+# O arquivo requirements.txt é a fonte da verdade, não as libs baixadas.
+
+# Outros
+# -----------------------------------------------------------------
+instance/ # Pasta de instância do Flask
