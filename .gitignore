@@ -66,6 +66,12 @@ Thumbs.db
 # -----------------------------------------------------------------
 # O arquivo requirements.txt é a fonte da verdade, não as libs baixadas.
 
+# Node.js / npm
+# -----------------------------------------------------------------
+# Dependências do Node.js, que devem ser instaladas via package.json.
+node_modules/
+node/
+
 # Outros
 # -----------------------------------------------------------------
 instance/ # Pasta de instância do Flask
