@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador Interativo de Modelagem de Dados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals (Stone/Amber) with Muted Blue-Gray accent -->
+    <!-- Application Structure Plan: A single-page application designed as an interactive learning tool. It starts with an introduction to the problem (a blog database). The core interaction is a selector allowing users to choose between 'Top-Down' and 'Bottom-Up' modeling strategies. The main content area dynamically updates to provide a step-by-step, visual walkthrough of the chosen strategy. This concludes with a static summary section showing the final Data Dictionary and a visual, HTML/CSS-based Relationship Diagram. This structure was chosen to transform the static educational text into an engaging, hands-on experience, allowing users to actively compare and understand the two distinct methodologies, which is the primary goal of the source material. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Modeling Strategies (Top-Down/Bottom-Up) -> Goal: Teach & Contrast -> Viz/Presentation: Interactive, multi-step UI flow -> Interaction: User clicks to progress through steps (e.g., reveal attributes, group items) -> Justification: Active participation enhances learning and retention compared to passive reading. -> Library/Method: Vanilla JS, HTML, Tailwind CSS.
+        - Report Info: Table Relationships (Foreign Keys) -> Goal: Organize/Relationships -> Viz/Presentation: Custom Relationship Diagram -> Interaction: Hovering over a table or key highlights its connections -> Justification: A visual diagram makes the abstract concept of relationships between tables concrete and easy to grasp. -> Library/Method: HTML/CSS (styled divs, borders, and flexbox) to avoid SVG.
+        - Report Info: Data Dictionary -> Goal: Inform/Summarize -> Viz/Presentation: Clean, styled HTML tables -> Interaction: None -> Justification: This is the standard, universally understood format for presenting a data dictionary. -> Library/Method: HTML `<table>` with Tailwind CSS.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. 
+    -->
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+        .strategy-card { transition: all 0.3s ease-in-out; }
+        .attribute-pill { transition: all 0.5s ease-in-out; }
+        .connector-line {
+            position: absolute;
+            border-color: #94a3b8;
+            border-style: dashed;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-700">Explorador Interativo de Modelagem de Dados</h1>
+            <p class="mt-2 text-lg text-stone-600">Uma abordagem prática para entender as estratégias de design de banco de dados.</p>
+        </header>
+
+        <main>
+            <!-- Cenário do Problema -->
+            <section id="scenario" class="mb-12 bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <h2 class="text-2xl font-bold text-slate-700 mb-3 flex items-center">
+                    <span class="text-2xl mr-3 text-amber-500">🎯</span> Cenário do Problema
+                </h2>
+                <p class="text-stone-600">
+                    Nosso objetivo é criar um banco de dados para um sistema simples de <strong>Blog</strong>. Precisamos de uma estrutura que armazene, de forma organizada, informações sobre os <strong>autores</strong> que escrevem, as <strong>postagens</strong> que eles publicam e os <strong>comentários</strong> que os leitores deixam. Esta aplicação interativa irá guiá-lo através de duas estratégias clássicas para modelar este banco de dados.
+                </p>
+            </section>
+
+            <!-- Seletor de Estratégia -->
+            <section id="strategy-selector" class="mb-12">
+                <h2 class="text-2xl font-bold text-slate-700 mb-4 text-center">Escolha uma Estratégia de Modelagem para Explorar</h2>
+                <div class="flex justify-center space-x-4">
+                    <button id="btn-top-down" class="bg-slate-700 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-opacity-50 transition-transform transform hover:scale-105">
+                        Top-Down (Do Geral ao Específico)
+                    </button>
+                    <button id="btn-bottom-up" class="bg-amber-500 text-white font-bold py-3 px-6 rounded-lg shadow-md hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-opacity-50 transition-transform transform hover:scale-105">
+                        Bottom-Up (Do Específico ao Geral)
+                    </button>
+                </div>
+            </section>
+
+            <!-- Área de Exploração Dinâmica -->
+            <section id="exploration-area" class="mb-12 min-h-[400px]"></section>
+
+            <!-- Resultado Final: Dicionário e Diagrama -->
+            <section id="final-result" class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                <h2 class="text-2xl font-bold text-slate-700 mb-6 flex items-center">
+                     <span class="text-2xl mr-3 text-amber-500">🏁</span> Resultado: A Estrutura Final do Banco de Dados
+                </h2>
+                <p class="text-stone-600 mb-8">
+                    Independentemente da estratégia escolhida, o objetivo é chegar a uma estrutura bem definida e documentada. O Dicionário de Dados formaliza cada tabela e campo, enquanto o Diagrama de Relacionamento ilustra visualmente como as tabelas se conectam, fornecendo um guia claro para a implementação e manutenção do sistema.
+                </p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <!-- Dicionário de Dados -->
+                    <div id="data-dictionary" class="lg:col-span-3">
+                        <h3 class="text-xl font-bold text-slate-600 mb-4">Dicionário de Dados</h3>
+                        <div class="space-y-6">
+                            <!-- Tabela Autor -->
+                            <div class="overflow-x-auto">
+                                <p class="font-semibold text-stone-700 mb-1">Tabela: autor</p>
+                                <table class="min-w-full bg-white border border-stone-200 rounded-lg">
+                                    <thead class="bg-stone-100">
+                                        <tr>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Campo</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Tipo</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Chave</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Descrição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-stone-700">
+                                        <tr><td class="py-2 px-3 border-b">id_autor</td><td class="py-2 px-3 border-b">INTEGER</td><td class="py-2 px-3 border-b"><span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">PK</span></td><td class="py-2 px-3 border-b">Código identificador do autor</td></tr>
+                                        <tr><td class="py-2 px-3 border-b">nm_autor</td><td class="py-2 px-3 border-b">VARCHAR(150)</td><td class="py-2 px-3 border-b"></td><td class="py-2 px-3 border-b">Nome completo do autor</td></tr>
+                                        <tr><td class="py-2 px-3 border-b">ds_email</td><td class="py-2 px-3 border-b">VARCHAR(100)</td><td class="py-2 px-3 border-b"></td><td class="py-2 px-3 border-b">E-mail de login do autor</td></tr>
+                                        <tr><td class="py-2 px-3 border-b">ds_bio</td><td class="py-2 px-3 border-b">TEXT</td><td class="py-2 px-3 border-b"></td><td class="py-2 px-3 border-b">Biografia resumida do autor</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                             <!-- Tabela Postagem -->
+                            <div class="overflow-x-auto">
+                                <p class="font-semibold text-stone-700 mb-1">Tabela: postagem</p>
+                                <table class="min-w-full bg-white border border-stone-200 rounded-lg">
+                                    <thead class="bg-stone-100">
+                                        <tr>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Campo</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Tipo</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Chave</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Descrição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-stone-700">
+                                        <tr><td class="py-2 px-3 border-b">id_postagem</td><td class="py-2 px-3 border-b">INTEGER</td><td class="py-2 px-3 border-b"><span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">PK</span></td><td class="py-2 px-3 border-b">Código identificador da postagem</td></tr>
+                                        <tr><td class="py-2 px-3 border-b">ds_titulo</td><td class="py-2 px-3 border-b">VARCHAR(200)</td><td class="py-2 px-3 border-b"></td><td class="py-2 px-3 border-b">Título da postagem</td></tr>
+                                        <tr><td class="py-2 px-3 border-b">ds_conteudo</td><td class="py-2 px-3 border-b">TEXT</td><td class="py-2 px-3 border-b"></td><td class="py-2 px-3 border-b">Corpo de texto da postagem</td></tr>
+                                        <tr><td class="py-2 px-3 border-b">dt_publicacao</td><td class="py-2 px-3 border-b">DATETIME</td><td class="py-2 px-3 border-b"></td><td class="py-2 px-3 border-b">Data e hora da publicação</td></tr>
+                                        <tr class="bg-amber-50"><td class="py-2 px-3 border-b">id_autor</td><td class="py-2 px-3 border-b">INTEGER</td><td class="py-2 px-3 border-b"><span class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">FK</span></td><td class="py-2 px-3 border-b">Chave do autor que publicou</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- Tabela Comentário -->
+                            <div class="overflow-x-auto">
+                                <p class="font-semibold text-stone-700 mb-1">Tabela: comentario</p>
+                                <table class="min-w-full bg-white border border-stone-200 rounded-lg">
+                                    <thead class="bg-stone-100">
+                                        <tr>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Campo</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Tipo</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Chave</th>
+                                            <th class="py-2 px-3 border-b text-left text-sm font-semibold text-stone-600">Descrição</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-stone-700">
+                                        <tr><td class="py-2 px-3 border-b">id_comentario</td><td class="py-2 px-3 border-b">INTEGER</td><td class="py-2 px-3 border-b"><span class="bg-green-100 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">PK</span></td><td class="py-2 px-3 border-b">Código do comentário</td></tr>
+                                        <tr><td class="py-2 px-3 border-b">nm_leitor</td><td class="py-2 px-3 border-b">VARCHAR(150)</td><td class="py-2 px-3 border-b"></td><td class="py-2 px-3 border-b">Nome do leitor</td></tr>
+                                        <tr><td class="py-2 px-3 border-b">ds_texto</td><td class="py-2 px-3 border-b">TEXT</td><td class="py-2 px-3 border-b"></td><td class="py-2 px-3 border-b">O texto do comentário</td></tr>
+                                        <tr><td class="py-2 px-3 border-b">dt_comentario</td><td class="py-2 px-3 border-b">DATETIME</td><td class="py-2 px-3 border-b"></td><td class="py-2 px-3 border-b">Data do comentário</td></tr>
+                                        <tr class="bg-amber-50"><td class="py-2 px-3 border-b">id_postagem</td><td class="py-2 px-3 border-b">INTEGER</td><td class="py-2 px-3 border-b"><span class="bg-yellow-100 text-yellow-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">FK</span></td><td class="py-2 px-3 border-b">Chave da postagem comentada</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Diagrama de Relacionamento -->
+                    <div id="relationship-diagram" class="lg:col-span-2">
+                        <h3 class="text-xl font-bold text-slate-600 mb-4">Diagrama de Relacionamento</h3>
+                        <div class="relative bg-stone-100 p-4 rounded-lg border border-stone-200 h-[500px] flex flex-col justify-around">
+                            <!-- Tabelas como Divs -->
+                            <div id="diag-autor" class="bg-white p-3 rounded-lg shadow-md border-2 border-slate-700 z-10 w-4/5 mx-auto">
+                                <p class="font-bold text-center">autor</p>
+                                <hr class="my-1">
+                                <p class="text-sm"><span class="font-semibold text-green-700">PK</span> id_autor</p>
+                            </div>
+                            <div id="diag-postagem" class="bg-white p-3 rounded-lg shadow-md border-2 border-slate-700 z-10 w-4/5 mx-auto">
+                                <p class="font-bold text-center">postagem</p>
+                                <hr class="my-1">
+                                <p class="text-sm"><span class="font-semibold text-green-700">PK</span> id_postagem</p>
+                                <p class="text-sm"><span class="font-semibold text-yellow-700">FK</span> id_autor</p>
+                            </div>
+                            <div id="diag-comentario" class="bg-white p-3 rounded-lg shadow-md border-2 border-slate-700 z-10 w-4/5 mx-auto">
+                                <p class="font-bold text-center">comentario</p>
+                                <hr class="my-1">
+                                <p class="text-sm"><span class="font-semibold text-green-700">PK</span> id_comentario</p>
+                                <p class="text-sm"><span class="font-semibold text-yellow-700">FK</span> id_postagem</p>
+                            </div>
+                             <!-- Linhas Conectoras (serão posicionadas com JS) -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const explorationArea = document.getElementById('exploration-area');
+        const btnTopDown = document.getElementById('btn-top-down');
+        const btnBottomUp = document.getElementById('btn-bottom-up');
+
+        const dbData = {
+            entities: {
+                autor: {
+                    name: 'Autor',
+                    icon: '👤',
+                    description: 'A pessoa que escreve as postagens.',
+                    attributes: [
+                        { name: 'id_autor', desc: 'Código de identificação' },
+                        { name: 'nm_autor', desc: 'Nome completo' },
+                        { name: 'ds_email', desc: 'E-mail (para login)' },
+                        { name: 'ds_bio', desc: 'Uma pequena biografia' },
+                    ]
+                },
+                postagem: {
+                    name: 'Postagem',
+                    icon: '📄',
+                    description: 'O conteúdo que é publicado no blog.',
+                    attributes: [
+                        { name: 'id_postagem', desc: 'Código de identificação' },
+                        { name: 'ds_titulo', desc: 'Título da postagem' },
+                        { name: 'ds_conteudo', desc: 'Conteúdo do texto' },
+                        { name: 'dt_publicacao', desc: 'Data de publicação' },
+                        { name: 'id_autor', desc: 'A qual autor pertence' },
+                    ]
+                },
+                comentario: {
+                    name: 'Comentário',
+                    icon: '💬',
+                    description: 'A interação dos leitores com uma postagem.',
+                    attributes: [
+                        { name: 'id_comentario', desc: 'Código de identificação' },
+                        { name: 'nm_leitor', desc: 'Nome do leitor que comentou' },
+                        { name: 'ds_texto', desc: 'Texto do comentário' },
+                        { name: 'dt_comentario', desc: 'Data do comentário' },
+                        { name: 'id_postagem', desc: 'A qual postagem pertence' },
+                    ]
+                }
+            },
+            allAttributes: [
+                { name: 'Nome do autor', entity: 'autor' },
+                { name: 'Título da postagem', entity: 'postagem' },
+                { name: 'Data do comentário', entity: 'comentario' },
+                { name: 'Conteúdo da publicação', entity: 'postagem' },
+                { name: 'E-mail do autor', entity: 'autor' },
+                { name: 'Biografia do autor', entity: 'autor' },
+                { name: 'ID da postagem', entity: 'postagem' },
+                { name: 'Texto do comentário', entity: 'comentario' },
+                { name: 'ID do autor', entity: 'autor' },
+                { name: 'Nome do leitor', entity: 'comentario' },
+                { name: 'ID do comentário', entity: 'comentario' },
+                { name: 'Data da publicação', entity: 'postagem' },
+            ]
+        };
+
+        function resetButtons() {
+            btnTopDown.classList.remove('ring-4', 'ring-slate-400');
+            btnBottomUp.classList.remove('ring-4', 'ring-amber-400');
+            btnTopDown.classList.add('bg-slate-700', 'hover:bg-slate-800');
+            btnBottomUp.classList.add('bg-amber-500', 'hover:bg-amber-600');
+        }
+
+        function renderTopDown() {
+            resetButtons();
+            btnTopDown.classList.add('ring-4', 'ring-slate-400');
+            
+            let content = `
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200 text-center">
+                    <h3 class="text-xl font-bold text-slate-700 mb-2">Estratégia Top-Down</h3>
+                    <p class="text-stone-600 mb-2"><strong class="font-semibold">Passo 1:</strong> Identificar as entidades principais (os grandes conceitos).</p>
+                    <p class="text-sm text-stone-500 mb-6">Clique em uma entidade para revelar seus atributos (as informações específicas que guardamos sobre ela).</p>
+                    <div class="grid md:grid-cols-3 gap-6" id="top-down-entities">
+                        ${Object.keys(dbData.entities).map(key => `
+                            <div id="entity-${key}" class="strategy-card cursor-pointer p-4 border-2 border-stone-200 rounded-lg hover:shadow-lg hover:border-slate-400 hover:-translate-y-1">
+                                <p class="text-4xl">${dbData.entities[key].icon}</p>
+                                <p class="text-lg font-bold mt-2">${dbData.entities[key].name}</p>
+                                <p class="text-sm text-stone-500">${dbData.entities[key].description}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div id="top-down-attributes" class="mt-6 text-left"></div>
+                </div>`;
+            explorationArea.innerHTML = content;
+
+            Object.keys(dbData.entities).forEach(key => {
+                document.getElementById(`entity-${key}`).addEventListener('click', () => {
+                    const attributesContainer = document.getElementById('top-down-attributes');
+                    const allCards = document.querySelectorAll('#top-down-entities .strategy-card');
+                    allCards.forEach(card => card.classList.remove('bg-slate-100', 'border-slate-500'));
+                    document.getElementById(`entity-${key}`).classList.add('bg-slate-100', 'border-slate-500');
+
+                    attributesContainer.innerHTML = `
+                        <div class="bg-slate-50 p-4 rounded-lg">
+                            <h4 class="font-bold text-slate-800">Atributos de "${dbData.entities[key].name}":</h4>
+                            <ul class="list-disc list-inside mt-2 text-stone-700 space-y-1">
+                                ${dbData.entities[key].attributes.map(attr => `<li><strong>${attr.name}:</strong> ${attr.desc}</li>`).join('')}
+                            </ul>
+                        </div>`;
+                });
+            });
+        }
+        
+        function renderBottomUp() {
+            resetButtons();
+            btnBottomUp.classList.add('ring-4', 'ring-amber-400');
+
+            let content = `
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-200">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-slate-700 mb-2">Estratégia Bottom-Up</h3>
+                        <p class="text-stone-600 mb-2"><strong class="font-semibold">Passo 1:</strong> Listar todos os elementos de dados necessários.</p>
+                        <p id="bottom-up-step2-desc" class="text-sm text-stone-500 mb-6">Abaixo estão todas as informações que precisamos armazenar, de forma desorganizada.</p>
+                    </div>
+                    <div id="attribute-pool" class="flex flex-wrap justify-center gap-3 p-4 bg-stone-100 rounded-lg min-h-[150px]">
+                        ${dbData.allAttributes.map((attr, index) => `
+                            <span class="attribute-pill bg-white text-stone-700 text-sm font-medium px-3 py-1 rounded-full border border-stone-300 shadow-sm" data-entity="${attr.entity}" style="opacity:1; transform: scale(1);">${attr.name}</span>
+                        `).join('')}
+                    </div>
+                    <div class="text-center mt-6">
+                         <button id="btn-group-attributes" class="bg-amber-500 text-white font-bold py-2 px-5 rounded-lg shadow-md hover:bg-amber-600 focus:outline-none transition-opacity">
+                            Passo 2: Agrupar Atributos
+                        </button>
+                    </div>
+                    <div id="entity-containers" class="grid md:grid-cols-3 gap-6 mt-6"></div>
+                </div>`;
+            explorationArea.innerHTML = content;
+            
+            document.getElementById('btn-group-attributes').addEventListener('click', (e) => {
+                e.target.style.opacity = '0';
+                e.target.disabled = true;
+                
+                document.getElementById('bottom-up-step2-desc').innerHTML = '<strong>Passo 2:</strong> Agrupar os elementos em conjuntos lógicos para formar as entidades.';
+
+                const containersArea = document.getElementById('entity-containers');
+                containersArea.innerHTML = Object.keys(dbData.entities).map(key => `
+                    <div class="border-2 border-dashed border-stone-300 rounded-lg p-4 min-h-[200px] bg-stone-50">
+                        <p class="text-center font-bold text-lg">${dbData.entities[key].icon} ${dbData.entities[key].name}</p>
+                        <div id="container-${key}" class="flex flex-wrap justify-center gap-2 mt-2"></div>
+                    </div>
+                `).join('');
+
+                const pills = document.querySelectorAll('#attribute-pool .attribute-pill');
+                pills.forEach(pill => {
+                    const entity = pill.dataset.entity;
+                    const container = document.getElementById(`container-${entity}`);
+                    setTimeout(() => {
+                        pill.classList.add('bg-slate-200', 'border-slate-400');
+                        container.appendChild(pill);
+                    }, Math.random() * 500);
+                });
+            });
+        }
+        
+        function drawConnectors() {
+            const diagram = document.getElementById('relationship-diagram');
+            const autorBox = document.getElementById('diag-autor');
+            const postagemBox = document.getElementById('diag-postagem');
+            const comentarioBox = document.getElementById('diag-comentario');
+
+            const createLine = (box1, box2) => {
+                const rect1 = box1.getBoundingClientRect();
+                const rect2 = box2.getBoundingClientRect();
+                const containerRect = diagram.getBoundingClientRect();
+
+                const startX = rect1.left + rect1.width / 2 - containerRect.left;
+                const startY = rect1.bottom - containerRect.top;
+                const endX = rect2.left + rect2.width / 2 - containerRect.left;
+                const endY = rect2.top - containerRect.top;
+
+                const line = document.createElement('div');
+                line.classList.add('connector-line');
+                line.style.left = `${startX}px`;
+                line.style.top = `${startY}px`;
+                line.style.width = '2px';
+                line.style.height = `${endY - startY}px`;
+                line.style.borderLeftWidth = '2px';
+                diagram.appendChild(line);
+            };
+            
+            diagram.querySelectorAll('.connector-line').forEach(line => line.remove());
+            createLine(autorBox, postagemBox);
+            createLine(postagemBox, comentarioBox);
+        }
+
+        btnTopDown.addEventListener('click', renderTopDown);
+        btnBottomUp.addEventListener('click', renderBottomUp);
+        
+        window.addEventListener('resize', drawConnectors);
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTopDown();
+            drawConnectors();
+        });
+
+    </script>
+</body>
+</html>
