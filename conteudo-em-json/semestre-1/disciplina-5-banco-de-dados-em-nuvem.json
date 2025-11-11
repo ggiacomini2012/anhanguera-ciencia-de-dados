@@ -1,0 +1,44 @@
+{
+  "unidades": [
+    {
+      "titulo": "UNIDADE 1 - Fundamentos dos Bancos de Dados em Nuvem",
+      "aulas": [
+        "Introdução aos Bancos de Dados em Nuvem",
+        "Princípios da Computação em Nuvem",
+        "Arquitetura de Banco de Dados em Nuvem",
+        "Principais Fornecedores de Banco de Dados em Nuvem",
+        "Encerramento da Unidade"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 2 - Fundamentos do MySQL",
+      "aulas": [
+        "Introdução ao MySql",
+        "Explorando os Relacionamentos em Bancos de Dados",
+        "Linguagem SQL – DML (Data Manipulation Language)",
+        "Normalização de Dados",
+        "Encerramento da Unidade"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 3 - NoSQL",
+      "aulas": [
+        "Fundamentos do NoSQL",
+        "Modelos de Dados",
+        "MongoDB",
+        "FireBase",
+        "Encerramento da Unidade"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 4 - Big Data",
+      "aulas": [
+        "Introdução ao Big Data",
+        "Os Três Vs do Big Data",
+        "Frameworks de Big Data: Uma Visão Geral",
+        "Frameworks de Armazenamento de Dados de Big Data",
+        "Encerramento da Unidade"
+      ]
+    }
+  ]
+}

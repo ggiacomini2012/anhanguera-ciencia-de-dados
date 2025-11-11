@@ -1,0 +1,44 @@
+{
+  "unidades": [
+    {
+      "titulo": "UNIDADE 1 - Fundamentos de Estruturas de Dados",
+      "aulas": [
+        "Introdução a Estrutura de Dados em Python",
+        "Listas Encadeadas",
+        "Pilhas e Filas",
+        "Aplicação de Estruturas de Dados",
+        "Fundamentos de Estruturas de Dados"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 2 - Estrutura de Dados Árvores",
+      "aulas": [
+        "Fundamentos de Árvores e Algoritmos",
+        "Árvores de Busca Binária",
+        "Árvores B e Quadtrees",
+        "Árvores AVL",
+        "Estrutura de Dados Árvores"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 3 - Grafos e Suas Operações",
+      "aulas": [
+        "Introdução a Grafos",
+        "Operações em Grafos",
+        "Caminhos e Ciclos",
+        "Algoritmos para Grafos em Python",
+        "Grafos e Suas Operações"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 4 - Estruturas de Dados Avançadas e Análise de Dados",
+      "aulas": [
+        "Maps e Hash",
+        "Análise de Dados Estruturados",
+        "Introdução a Análise de Algoritmos e Estruturas de Dados",
+        "Algoritmos de Ordenação e Busca Avançados",
+        "Estruturas de Dados Avançadas e Análise de Dados"
+      ]
+    }
+  ]
+}

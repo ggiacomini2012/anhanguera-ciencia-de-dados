@@ -1,0 +1,44 @@
+{
+  "unidades": [
+    {
+      "titulo": "UNIDADE 1 - Estilos de Arquiteturas de Dados",
+      "aulas": [
+        "Princípios da arquitetura de dados",
+        "Modelos de arquitetura de dados",
+        "Tipos de arquitetura de dados",
+        "Normalizar dados",
+        "Estilos de Arquiteturas de Dados"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 2 - Modelos de Padrões de Arquitetura de Dados",
+      "aulas": [
+        "Modelos de Padrões de arquitetura",
+        "Modelagem de dados",
+        "Armazenamento de dados",
+        "Gerenciamento de dados de referência",
+        "Modelos de Padrões de Arquitetura de Dados"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 3 - Tipos Avançados de Dados e Novas Aplicações",
+      "aulas": [
+        "Arquitetura de dados corporativos",
+        "Construindo um Data Warehouse",
+        "Ingestão de variedades de dados",
+        "ODS para Data Warehouse",
+        "Tipos Avançados de dados e novas aplicações"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 4 - SGBDs e suas Arquiteturas de Dados",
+      "aulas": [
+        "Sistema de gerenciamento de dados",
+        "Arquitetura de dados utilizando SGBD",
+        "Novas arquiteturas e aplicações",
+        "Escalabilidade",
+        "SGBDs e suas Arquiteturas de Dados"
+      ]
+    }
+  ]
+}
