@@ -1,108 +1,44 @@
-from collections import deque
+import numpy as np
+import scipy.stats as stats
 
-class GrafoTransporte:
-    def __init__(self):
-        """
-        Inicializa a estrutura do grafo de transporte.
-        O grafo é um dicionário onde as chaves são as interseções (vértices)
-        e os valores são listas de interseções de destino (arestas).
-        """
-        self.grafo = {}
+def executar_aula_probabilidade():
+    print("=== AULA 2: DISTRIBUIÇÕES NA PRÁTICA (PYTHON) ===\n")
 
-    def adicionar_via(self, origem, destino):
-        """
-        Adiciona uma via (aresta direcionada) ao grafo.
-        Representa uma rua de mão única.
-        """
-        if origem not in self.grafo:
-            self.grafo[origem] = []
-        if destino not in self.grafo:
-            self.grafo[destino] = []
-        self.grafo[origem].append(destino)
+    # 1. DISTRIBUIÇÃO NORMAL (O SINO)
+    # Simulando alturas de uma população (Média=1.75m, Desvio Padrão=0.10)
+    print("--- 1. Distribuição Normal ---")
+    media, desvio = 1.75, 0.10
+    # Qual a probabilidade de alguém ter EXATAMENTE entre 1.70m e 1.80m?
+    prob_normal = stats.norm.cdf(1.80, media, desvio) - stats.norm.cdf(1.70, media, desvio)
+    print(f"Probabilidade de altura entre 1.70m e 1.80m: {prob_normal*100:.2f}%")
+    print("Dica: Usamos a CDF (FDA) para calcular a área sob o sino!\n")
 
-    def bloquear_via(self, origem, destino):
-        """
-        Simula o bloqueio de uma via removendo a aresta correspondente.
-        Isso torna o caminho intransitável.
-        """
-        if origem in self.grafo and destino in self.grafo[origem]:
-            self.grafo[origem].remove(destino)
-            print(f"✅ Via de {origem} para {destino} foi bloqueada.")
-        else:
-            print(f"❌ Erro: A via de {origem} para {destino} não existe ou já está bloqueada.")
+    # 2. DISTRIBUIÇÃO BINOMIAL (SUCESSO OU FRACASSO)
+    # Fábrica: 10 tentativas, chance de defeito de 5% (0.05)
+    print("--- 2. Distribuição Binomial ---")
+    n, p = 10, 0.05
+    # Qual a chance de encontrar EXATAMENTE 1 produto defeituoso em 10?
+    prob_binom = stats.binom.pmf(1, n, p)
+    print(f"Chance de ter exatamente 1 defeito em 10 produtos: {prob_binom*100:.2f}%")
+    print("Dica: PMF é usada para eventos discretos (contáveis).\n")
 
-    def encontrar_rota_alternativa(self, inicio, fim):
-        """
-        Usa o algoritmo de Busca em Largura (BFS) para verificar se existe
-        um caminho entre dois pontos, mesmo com vias bloqueadas.
-        Retorna True se houver uma rota, False caso contrário.
-        """
-        # Se os pontos de início ou fim não existirem, não há como encontrar uma rota.
-        if inicio not in self.grafo or fim not in self.grafo:
-            return False
+    # 3. DISTRIBUIÇÃO T DE STUDENT (AMOSTRAS PEQUENAS)
+    print("--- 3. Distribuição t de Student ---")
+    graus_liberdade = 10  # Ex: Amostra de 11 pessoas (n-1)
+    # Qual a chance de um valor estar abaixo de 1.5 desvios na t de Student?
+    prob_t = stats.t.cdf(1.5, df=graus_liberdade)
+    print(f"Probabilidade acumulada (t < 1.5): {prob_t*100:.2f}%")
+    print("Dica: Note que as caudas são mais largas que na Normal.\n")
 
-        fila = deque([inicio])
-        visitados = {inicio}
+    # 4. O DESAFIO DO ANALISTA (INFERÊNCIA)
+    print("--- 4. Exemplo prático: Amostragem ---")
+    populacao_tamanho = 10000
+    tamanho_amostra = 178
+    defeitos_encontrados = 9
+    proporcao_amostral = defeitos_encontrados / tamanho_amostra
+    
+    print(f"Baseado em {tamanho_amostra} testes, a taxa de defeitos é {proporcao_amostral*100:.2f}%.")
+    print(f"Projeção para 10.000 unidades: ~{int(proporcao_amostral * populacao_tamanho)} defeitos.")
 
-        while fila:
-            vertice_atual = fila.popleft()
-
-            # Se o vértice atual for o destino, encontramos uma rota.
-            if vertice_atual == fim:
-                return True
-
-            # Explora os vizinhos do vértice atual
-            for vizinho in self.grafo[vertice_atual]:
-                if vizinho not in visitados:
-                    visitados.add(vizinho)
-                    fila.append(vizinho)
-
-        # Se a fila esvaziar e o destino não foi alcançado, não há rota.
-        return False
-
-# --- Configurando o grafo do problema ---
-rede_viaria = GrafoTransporte()
-cidades = ['A', 'B', 'C', 'D', 'E', 'F']
-
-# Adicionando as vias com base na Figura 1 (Grafos do exercício)
-# A -> B, A -> C
-rede_viaria.adicionar_via('A', 'B')
-rede_viaria.adicionar_via('A', 'C')
-# B -> A, B -> D
-rede_viaria.adicionar_via('B', 'A')
-rede_viaria.adicionar_via('B', 'D')
-# C -> E
-rede_viaria.adicionar_via('C', 'E')
-# D -> B, D -> E
-rede_viaria.adicionar_via('D', 'B')
-rede_viaria.adicionar_via('D', 'E')
-# E -> C, E -> F
-rede_viaria.adicionar_via('E', 'C')
-rede_viaria.adicionar_via('E', 'F')
-# F -> D
-rede_viaria.adicionar_via('F', 'D')
-
-# --- Executando o cenário do problema ---
-print("--- Situação Inicial: Verificando rotas ---")
-origem_desejada = 'A'
-destino_desejado = 'F'
-if rede_viaria.encontrar_rota_alternativa(origem_desejada, destino_desejado):
-    print(f"✅ Existe uma rota de {origem_desejada} para {destino_desejada}.")
-else:
-    print(f"❌ Não existe uma rota de {origem_desejada} para {destino_desejada}.")
-
-print("\n--- Simulando o bloqueio da via B -> D ---")
-rede_viaria.bloquear_via('B', 'D')
-print("\n--- Verificando a rota após o primeiro bloqueio ---")
-if rede_viaria.encontrar_rota_alternativa(origem_desejada, destino_desejado):
-    print(f"✅ Ainda existe uma rota de {origem_desejada} para {destino_desejada}.")
-else:
-    print(f"❌ A rota de {origem_desejada} para {destino_desejada} está bloqueada.")
-
-print("\n--- Simulando um bloqueio adicional da via D -> E ---")
-rede_viaria.bloquear_via('D', 'E')
-print("\n--- Verificando a rota após o segundo bloqueio ---")
-if rede_viaria.encontrar_rota_alternativa(origem_desejada, destino_desejado):
-    print(f"✅ Ainda existe uma rota de {origem_desejada} para {destino_desejada}.")
-else:
-    print(f"❌ A rota de {origem_desejada} para {destino_desejada} está bloqueada.")
+if __name__ == "__main__":
+    executar_aula_probabilidade()
