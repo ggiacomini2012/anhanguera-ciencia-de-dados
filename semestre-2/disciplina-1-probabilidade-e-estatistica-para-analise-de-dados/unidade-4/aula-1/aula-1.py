@@ -1,78 +1,57 @@
-# Definimos o número total de classes, que será o tamanho da nossa tabela hash.
-NUMERO_CLASSES = 15
+import numpy as np
+from scipy import stats
+from statsmodels.stats.proportion import proportions_ztest
 
-# O dicionário 'inventario' atuará como nossa tabela hash.
-# As chaves serão os números das classes (0 a 14) e os valores a contagem de produtos.
-inventario = {i: 0 for i in range(NUMERO_CLASSES)}
+# Configurando uma semente para resultados reproduzíveis (como o set.seed no R)
+np.random.seed(123)
 
-# Esta é a nossa função hash.
-# Ela usa o método da divisão para determinar a classe do produto.
-# O identificador único do produto é a "chave" de entrada.
-# Usamos os dois últimos dígitos do ID para determinar a classe.
-# No problema, a classe 0 corresponde à 15, então fazemos o ajuste.
-def funcao_hash_por_classe(identificador):
-  # Garante que o identificador é um número inteiro.
-  identificador = int(identificador)
-  # O resto da divisão por 100 nos dá os dois últimos dígitos.
-  classe = identificador % 100
-  # Ajusta a classe 15 para 0, se necessário.
-  if classe == 15:
-    return 0
-  else:
-    # A classe do produto é o resto da divisão por NUMERO_CLASSES (15).
-    # Isso mapeia as classes 0-14 para os índices da nossa tabela.
-    return classe % NUMERO_CLASSES
+print("🧪 --- SIMULAÇÃO DE EXPERIMENTOS ESTATÍSTICOS --- 🧪\n")
 
-# Esta função adiciona um produto ao inventário.
-def adicionar_produto(identificador):
-  # Calcula a classe do produto usando a função hash.
-  classe = funcao_hash_por_classe(identificador)
+# ---------------------------------------------------------
+# CENÁRIO 1: Teste t de Student (Comparação de Médias)
+# Exemplo: Eficácia de dois tratamentos (A e B)
+# ---------------------------------------------------------
+print("1. TESTE T DE STUDENT (Tratamentos)")
+tratamento_a = np.random.normal(loc=60, scale=10, size=100)
+tratamento_b = np.random.normal(loc=65, scale=10, size=100)
 
-  # Verifica se a classe existe no nosso inventário.
-  if classe in inventario:
-    # Se a classe existir, incrementa a contagem de produtos dessa classe.
-    inventario[classe] += 1
-    print(f"Produto com ID {identificador} adicionado à classe {classe}.")
-  else:
-    # Trata uma colisão ou um caso onde a classe não é válida.
-    print(f"Erro: Classe {classe} não encontrada. Impossível adicionar o produto.")
+t_stat, p_val_t = stats.ttest_ind(tratamento_a, tratamento_b)
 
-# Esta função consulta a quantidade de produtos em uma classe específica.
-def consultar_produtos_por_classe(identificador):
-  # Calcula a classe do produto usando a função hash.
-  classe = funcao_hash_por_classe(identificador)
-  
-  # Verifica se a classe existe no nosso inventário.
-  if classe in inventario:
-    # Retorna a contagem de produtos dessa classe.
-    contagem = inventario[classe]
-    print(f"A classe {classe} tem {contagem} produto(s) em estoque.")
-    return contagem
-  else:
-    # Trata um caso onde a classe não é válida.
-    print(f"Erro: Classe {classe} não encontrada.")
-    return None
+print(f"Média Tratamento A: {np.mean(tratamento_a):.2f}")
+print(f"Média Tratamento B: {np.mean(tratamento_b):.2f}")
+print(f"Valor-p: {p_val_t:.4f}")
 
-# --- Simulação de uso do sistema ---
+if p_val_t < 0.05:
+    print("Resultado: Diferença ESTATISTICAMENTE SIGNIFICATIVA! 🎉")
+else:
+    print("Resultado: Não há evidências de diferença significativa. 🤷‍♂️")
 
-print("Estado inicial do inventário:")
-print(inventario)
-print("-" * 30)
 
-# Adicionando alguns produtos para simular o uso.
-adicionar_produto(1234567805) # Classe 5
-adicionar_produto(9876543205) # Classe 5
-adicionar_produto(1122334401) # Classe 1
-adicionar_produto(5566778812) # Classe 12
-adicionar_produto(9900112201) # Classe 1
+print("\n" + "-"*50 + "\n")
 
-print("\nEstado do inventário após as adições:")
-print(inventario)
-print("-" * 30)
 
-# Consultando a quantidade de produtos de uma classe específica.
-consultar_produtos_por_classe(1122334401) # Consulta a classe 1
-consultar_produtos_por_classe(1234567805) # Consulta a classe 5
+# ---------------------------------------------------------
+# CENÁRIO 2: Teste A/B (Comparação de Proporções)
+# Exemplo: Conversão de vendas em páginas de E-commerce
+# ---------------------------------------------------------
+print("2. TESTE A/B (Conversão de E-commerce)")
+# Dados: 5000 visitantes por versão
+visitantes_a, visitantes_b = 5000, 5000
+# Simulando conversões (11.46% para A e 14.48% para B conforme o exemplo)
+conversoes_a = 573 
+conversoes_b = 724
 
-print("-" * 30)
-print("Fim da demonstração.")
+sucessos = np.array([conversoes_a, conversoes_b])
+amostras = np.array([visitantes_a, visitantes_b])
+
+# Realizando o teste de proporções (Z-test)
+z_stat, p_val_p = proportions_ztest(sucessos, amostras)
+
+print(f"Taxa de Conversão A: {(conversoes_a/visitantes_a)*100:.2f}%")
+print(f"Taxa de Conversão B: {(conversoes_b/visitantes_b)*100:.2f}%")
+print(f"Valor-p: {p_val_p:.8f}")
+
+if p_val_p < 0.05:
+    print("Resultado: A Versão B é SUPERIOR! 🚀")
+else:
+    print("Resultado: As versões performam de forma similar. ⚖️")
