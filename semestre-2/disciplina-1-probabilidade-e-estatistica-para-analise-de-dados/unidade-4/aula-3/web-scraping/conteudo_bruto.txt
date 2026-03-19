@@ -1,0 +1,227 @@
+=== Testes de hipóteses ===
+Testes de hipóteses
+10s
+10s
+1
+x
+
+Olá! Nesta aula, exploraremos os testes de hipóteses que são fundamentais para a análise estatística, permitindo que tiremos conclusões sobre uma população com base em uma amostra de dados. Eles são amplamente utilizados em diversas áreas, como saúde, marketing e finanças, fornecendo uma estrutura robusta para a tomada de decisões informadas.
+
+Faça o download do arquivo
+
+=== Ponto de Partida ===
+Ponto de Partida
+
+Quando realizamos um teste de hipóteses, começamos formulando duas hipóteses: a hipótese nula (H0) e a hipótese alternativa (H1). A hipótese nula geralmente sugere que não há efeito ou diferença, enquanto a hipótese alternativa busca evidenciar um efeito ou diferença. O objetivo é avaliar a evidência dos dados contra a hipótese nula.
+
+O teste Z é um dos testes mais simples e amplamente usados em estatística, especialmente quando temos um grande tamanho de amostra e conhecemos a variância populacional. Ele é utilizado para se determinar se há uma diferença estatisticamente significativa entre a média de uma amostra e a média de uma população ou entre as médias de duas populações.
+
+Por outro lado, o teste t de Student é usado quando não conhecemos a variância populacional e/ou o tamanho da amostra é pequeno, e existem diferentes variações do teste t, como o teste t para uma amostra, teste t para duas amostras independentes e o teste t pareado. Já o teste qui-quadrado é utilizado principalmente para variáveis categóricas, verificando-se se há uma associação significativa entre duas variáveis categóricas.
+
+Imagine que você é um analista de dados em uma empresa de varejo e está avaliando o impacto de duas campanhas publicitárias diferentes (A e B) nas vendas de um produto específico. Você coletou dados de vendas de 10 lojas que participaram da campanha A e 10 lojas que participaram da campanha B, a fim de determinar se há uma diferença significativa nas vendas médias entre as duas campanhas, mas como fazer essa estimativa?
+
+=== Vamos Começar! ===
+Vamos Começar!
+Testes Z, t de Student e qui-quadrado
+
+Os testes de hipóteses são ferramentas na análise estatística, pois nos permitem tirar conclusões sobre uma população com base em uma amostra de dados. Em termos simples, um teste de hipóteses é um procedimento que nos ajuda a tomar decisões ou a tirar conclusões sobre parâmetros populacionais.
+
+Para começar, revisemos o conceito básico de hipóteses. Quando estamos realizando um teste estatístico, geralmente começamos formulando duas hipóteses:
+
+Hipótese nula (H0): essa é a hipótese inicial que assumimos ser verdadeira. Geralmente, a hipótese nula sugere não haver efeito ou diferença.
+Hipótese alternativa (H1): essa é a hipótese que buscamos evidenciar. Ela contradiz a hipótese nula e sugere haver um efeito ou diferença.
+
+O objetivo de um teste de hipóteses é avaliar a evidência dos dados contra a hipótese nula. A depender do nível de significância escolhido (comumente 5%), rejeitamos ou não rejeitamos a hipótese nula, e isso nos leva ao conceito de valor p, que expressa a probabilidade de se observar os dados atuais ou algo mais extremo, assumindo que a hipótese nula seja verdadeira.
+
+Os testes de hipóteses são amplamente utilizados em diversas áreas, como saúde (para testar a eficácia de um tratamento), marketing (para avaliar o impacto de uma campanha) e finanças (para prever tendências de mercado), fornecendo uma estrutura robusta para a tomada de decisões informadas com base em dados.
+
+O teste Z é um dos testes mais simples e amplamente usados em estatística, especialmente quando temos um grande tamanho de amostra e conhecemos a variância populacional. Esse teste é usado para se determinar se há uma diferença estatisticamente significativa entre a média de uma amostra e a média de uma população ou entre as médias de duas populações.
+
+Quando usar o teste Z?
+Quando o tamanho da amostra é grande (n > 30).
+Quando a distribuição dos dados é aproximadamente normal.
+Quando a variância da população é conhecida.
+
+Diferentemente do teste Z, o teste t de Student é usado quando não conhecemos a variância populacional e/ou o tamanho da amostra é pequeno (geralmente, n < 30), e existem diferentes variações do teste t, como o teste t para uma amostra, teste t para duas amostras independentes e o teste t pareado.
+
+Quando usar o teste t de Student?
+
+Quando a amostra é pequena (n < 30).
+Quando a variância populacional é desconhecida.
+Quando a distribuição dos dados é aproximadamente normal.
+
+O teste qui-quadrado é usado principalmente para variáveis categóricas; ele verifica se há uma associação significativa entre duas variáveis categóricas, comparando as frequências observadas com as frequências esperadas sob a hipótese nula.
+
+Mas quando usar o teste qui-quadrado?
+
+Quando estamos lidando com variáveis categóricas.
+Quando queremos testar a independência entre duas variáveis.
+Aplicações práticas dos testes em intervalos de confiança
+
+Os intervalos de confiança fornecem uma maneira adicional de interpretar resultados de testes de hipóteses. Para o teste Z, um intervalo de confiança de 95%, suponha uma amostra grande (n>30) e conhecerá o desvio padrão populacional.
+
+𝑥
+-
+±
+𝑍
+𝛼
+2
+*
+(
+𝜎
+𝑛
+)
+
+Em que:
+
+𝑥
+-
+ é a média amostral, e usaremos 50.
+ 
+𝑍
+𝛼
+2
+ é o valor crítico da distribuição normal correspondente ao nível de confiança desejado (é 1,96 para 95% de confiança).
+𝜎
+ é o desvio padrão populacional, usaremos 10.
+ 
+𝑛
+é o tamanho da amostra, usaremos 100.
+
+Sendo assim, o intervalo de confiança é IC = [48.04, 51.96].
+
+O intervalo de confiança de 95% (48.04, 51.96) nos diz que, com 95% de confiança, a média populacional verdadeira está dentro desse intervalo, e se realizarmos muitas amostragens e construirmos intervalos de confiança de 95% para cada amostra, esperamos que 95% desses intervalos contenham a média populacional verdadeira.
+
+Os intervalos de confiança também podem ser usados para testar hipóteses. Por exemplo, se estivermos testando a hipótese nula de que a média populacional é 52 (H0: µ = 52), podemos ver que 52 não está dentro do intervalo de confiança de 95% (48.04, 51.96), portanto, rejeitamos a hipótese nula ao nível de significância de 5%.
+
+Intervalos de confiança para testes t
+
+Quando a amostra é pequena (n < 30) ou o desvio padrão populacional não é conhecido, utilizamos o teste t de Student para calcular o intervalo de confiança.
+
+Para calcular um intervalo de confiança de 95% para a média populacional (µ) usando o teste t, a fórmula é:
+
+𝑥
+-
+±
+𝑡
+𝛼
+2
+,
+𝑑
+𝑓
+*
+(
+𝑠
+𝑛
+)
+
+Em que:
+
+𝑥
+-
+ é a média amostral. Usaremos 75.
+𝑡
+𝛼
+2
+,
+𝑑
+𝑓
+ é o valor crítico da distribuição t de Student correspondente ao nível de confiança desejado e aos graus de liberdade (df = n – 1), usaremos n = 15 sendo assim, df = 14 e com 95% de confiança temos 2.145.
+𝑠
+ é o desvio padrão amostral. Usaremos 10.
+𝑛
+ é o tamanho da amostra. Usaremos 15.
+
+Sendo assim, o intervalo de confiança é IC = [69.47, 80.53].
+
+O intervalo de confiança de 95% [69.47, 80.53] nos diz que, com 95% de confiança, a média populacional verdadeira está dentro desse intervalo. Se realizarmos muitas amostragens e construirmos intervalos de confiança de 95% para cada amostra, esperamos que 95% desses intervalos contenham a média populacional verdadeira.
+
+=== Siga em Frente... ===
+Siga em Frente...
+Testes em experimentos estatísticos com R
+
+Exemplo prático: test Z em R
+
+Vamos imaginar que estamos trabalhando em um experimento para avaliar o impacto de uma nova estratégia de marketing. Suponha que a média de conversão antes da nova estratégia era de 5%, agora, após a implementação, queremos verificar se a nova taxa de conversão de 7% é significativamente diferente.
+
+> media_populacao <- 0.05  # Média populacional de conversão> media_amostra <- 0.07    # Média da nova amostra> desvio_padrao_pop <- 0.02  # Desvio padrão conhecido> n <- 50  # Tamanho da amostra> > # Teste Z> z_score <- (media_amostra - media_populacao) / (desvio_padrao_pop / sqrt(n))> z_score[1] 7.071068> > # Calculando o valor-p> valor_p <- 2 * (1 - pnorm(abs(z_score)))> valor_p[1] 1.537437e-12
+
+Aqui, calculamos o z-score e o valor p para avaliar se a nova taxa de conversão é significativamente diferente da original. Se o valor p for menor que o nível de significância escolhido (geralmente 0.05), rejeitaremos a hipótese nula.
+
+Podemos concluir que a nova estratégia de marketing gerou um impacto estatisticamente significativo na taxa de conversão.
+
+Exemplo prático: test T em R
+
+Agora, imagine que estamos realizando um experimento com dois grupos de clientes: um grupo foi exposto a uma campanha publicitária A e o outro grupo à campanha B; assim, queremos verificar se há uma diferença significativa na média de vendas geradas por cada campanha.
+
+Nesse exemplo, usamos o teste t para duas amostras independentes, comparando as vendas médias entre os grupos expostos às campanhas A e B.
+
+> vendas_A <- c(150, 160, 145, 170, 155)> vendas_B <- c(180, 175, 165, 160, 170)> > # Teste t para duas amostras independentes> teste_t <- t.test(vendas_A, vendas_B)> teste_t         Welch Two Sample t-test data:  vendas_A and vendas_Bt = -2.5145, df = 7.7111, p-value = 0.03716alternative hypothesis: true difference in means is not equal to 095 percent confidence interval: -26.923491  -1.076509sample estimates:mean of x mean of y       156       170 
+
+Se o valor p do teste t for inferior ao nível de significância, podemos concluir que houve uma diferença significativa entre as campanhas A e B.
+
+Exemplo prático: teste qui-quadrado em R
+
+Vamos aplicar o teste qui-quadrado para verificar se há uma associação entre o gênero de um cliente (masculino/feminino) e a preferência por um tipo de produto (Produto A/Produto B).
+
+> # Criando uma tabela de contingência> dados <- matrix(c(50, 30, 20, 40), nrow=2, byrow=TRUE)> rownames(dados) <- c("Masculino", "Feminino")> colnames(dados) <- c("Produto A", "Produto B")> > # Teste Qui-Quadrado> teste_qui <- chisq.test(dados)> teste_qui         Pearson's Chi-squared test with Yates' continuity correction data:  dadosX-squared = 10.529, df = 1, p-value = 0.001175
+
+Nesse exemplo, construímos uma tabela de contingência para representar a distribuição de preferências de produtos entre homens e mulheres. O teste qui-quadrado nos dirá se existe uma relação significativa entre o gênero e a preferência de produto.
+
+Se o valor p for menor que o nível de significância, rejeitaremos a hipótese nula e concluiremos que há uma associação significativa entre o gênero e a preferência de produto.
+
+Nesta aula, exploramos três testes de hipóteses essenciais: o teste Z, o teste t de Student e o teste qui-quadrado, aprendendo quando e como aplicar cada um em diferentes cenários. A implementação prática no R, aliás, permite-nos realizar análises detalhadas e precisas, fornecendo insights valiosos para a tomada de decisões. Além disso, discutimos a importância dos intervalos de confiança como uma ferramenta adicional para interpretar os resultados dos testes.
+
+=== Vamos Exercitar? ===
+Vamos Exercitar?
+
+Imagine que você é um analista de dados em uma empresa de varejo e está avaliando o impacto de duas campanhas publicitárias diferentes (A e B) nas vendas de um produto específico. Você coletou dados de vendas de 10 lojas que participaram da campanha A e 10 lojas que participaram da campanha B. Seu objetivo é determinar se há uma diferença significativa nas vendas médias entre as duas campanhas, mas como fazer essa estimativa?
+
+Vamos para a solução!
+
+Passo a passo da resolução
+
+1.Coletar os dados:
+
+> # Dados de vendas para as campanhas A e B> vendas_A <- c(150, 160, 145, 170, 155, 165, 140, 175, 150, 160)> vendas_B <- c(180, 175, 165, 160, 170, 185, 175, 180, 165, 170)
+
+2.Realizar o teste t para duas amostras independentes:
+
+> # Teste t para duas amostras independentes> teste_t <- t.test(vendas_A, vendas_B)> print(teste_t)
+
+Saída esperada:
+
+Welch Two Sample t-test data:  vendas_A and vendas_Bt = -3.5956, df = 16.258, p-value = 0.002369alternative hypothesis: true difference in means is not equal to 095 percent confidence interval: -24.626807  -6.373193sample estimates:mean of x mean of y     157.0     172.5 
+
+Interpretação dos resultados:
+
+Valor p: o valor p é 0.002369, que é menor que o nível de significância comum (0.05), e isso indica que há evidências estatísticas suficientes para se rejeitar a hipótese nula de que as médias das vendas das campanhas A e B são iguais.
+Intervalo de confiança: o intervalo de confiança de 95% para a diferença entre as médias das vendas é (-24.6268, -6.3731). Como o intervalo não inclui zero, isso reforça a conclusão de que há uma diferença significativa entre as campanhas.
+
+Com base na análise, concluímos que há uma diferença significativa nas vendas médias entre as campanhas publicitárias A e B, portanto, podemos afirmar que uma das campanhas é mais eficaz em aumentar as vendas do produto específico.
+
+=== Saiba mais ===
+Saiba mais
+Testes Z, t de Student e qui-quadrado :
+
+NETO, P. L. de O. C. Estatística. São Paulo: Editora Blucher, 2006.
+
+Aplicações práticas dos testes em intervalos de confiança:
+
+TRIOLA, M. F. Introdução à estatística. Rio de Janeiro: Grupo GEN, 2024.
+
+Testes em experimentos estatísticos com R:
+
+RDOCUMENTATION. T_test: T-test. [s. d.].
+
+=== Referências ===
+Referências
+
+FERREIRA, R. G. C. et al. Preparação e análise exploratória de dados. Porto Alegre: SAGAH, 2021.
+
+GIOLO, S. R. Introdução à análise de dados categóricos com aplicações. São Paulo: Editora Blucher, 2017.
+
+MILANI, A. M. P. et al. Visualização de dados. Porto Alegre: Grupo A, 2020.
+
+THURMAN, P. W. Estatística. São Paulo: Saraiva Uni, 2012. (Série Fundamentos).
+
