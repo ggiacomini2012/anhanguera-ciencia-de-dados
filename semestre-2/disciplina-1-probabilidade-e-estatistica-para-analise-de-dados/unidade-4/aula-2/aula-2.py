@@ -1,109 +1,122 @@
-# -*- coding: utf-8 -*-
-# Importa as bibliotecas necessárias
-import networkx as nx                  # Para criação, manipulação e estudo de grafos
-import matplotlib.pyplot as plt        # Para visualização e plotagem de gráficos
+# ============================================================
+# Aula 2 - Unidade 4: Significância Estatística
+# Métodos de Fisher e Neyman-Pearson
+# ============================================================
 
-# --- Configuração do Grafo de Transações ---
+import numpy as np
+from scipy import stats
 
-# Cria um grafo vazio. Usamos DiGraph para representar a direção das transações (Cliente -> Loja).
-G = nx.DiGraph()
+np.random.seed(123)
 
-# Adiciona nós (vértices) que representam clientes e estabelecimentos (lojas).
-# Definimos o tipo para facilitar a coloração e distinção visual.
-G.add_node('Cliente A', type='cliente', saldo=1500.00)
-G.add_node('Cliente B', type='cliente', saldo=800.00)
-G.add_node('Loja da Esquina', type='loja', categoria='varejo')
-G.add_node('E-commerce Tech', type='loja', categoria='online')
-G.add_node('Viagens KPL', type='loja', categoria='serviço')
-G.add_node('Estabelecimento Suspeito', type='loja', categoria='internacional')
 
-# --- Adição de Arestas (Transações) com Atributos ---
+# ============================================================
+# PARTE 1: MÉTODO DE FISHER — Valor p
+# ============================================================
+# O método de Fisher usa o valor p para medir evidência
+# contra a hipótese nula (H0).
+# Regra: se valor p < alpha (0.05), rejeita H0.
 
-# Adiciona arestas (transações) com atributos detalhados:
-# 'peso': valor da transação
-# 'tipo': tipo de operação (compra, saque)
-# 'data': simula um timestamp
-# 'local': localização da transação
-# 'status': para simular se é suspeita ou legítima
-print("Adicionando transações normais...")
-G.add_edge('Cliente A', 'Loja da Esquina',
-           weight=50.00, type='compra', data='2025-08-20 10:30', local='Balneário Camboriú', status='legítima')
-G.add_edge('Cliente A', 'E-commerce Tech',
-           weight=120.50, type='compra online', data='2025-08-20 14:15', local='Online', status='legítima')
-G.add_edge('Cliente B', 'Loja da Esquina',
-           weight=30.00, type='compra', data='2025-08-21 09:00', local='Balneário Camboriú', status='legítima')
-G.add_edge('Cliente B', 'Viagens KPL',
-           weight=750.00, type='serviço', data='2025-08-21 16:45', local='Online', status='legítima')
+print("=" * 60)
+print("MÉTODO DE FISHER")
+print("=" * 60)
 
-# --- Transação Potencialmente Fraudulenta ---
-# Simulamos uma transação com características que podem indicar fraude:
-# - Alto valor
-# - De um cliente que geralmente faz transações menores
-# - Em um estabelecimento incomum ou de categoria diferente
-# - Realizada em um curto espaço de tempo após outras transações normais, e talvez em um local distante.
-print("Adicionando transação potencialmente suspeita...")
-G.add_edge('Cliente A', 'Estabelecimento Suspeito',
-           weight=980.00, type='compra internacional', data='2025-08-20 15:00', local='Londres', status='suspeita')
+# Contexto: comparar eficácia de medicamento vs. placebo
+grupo_tratamento = np.random.normal(loc=5.5, scale=1, size=100)
+grupo_controle   = np.random.normal(loc=5.0, scale=1, size=100)
 
-# --- Preparação para Visualização ---
+# Teste t de Welch (equivalente ao R: t.test)
+resultado = stats.ttest_ind(grupo_tratamento, grupo_controle)
 
-# Define as posições dos nós para a visualização.
-# spring_layout tenta posicionar nós conectados mais próximos uns dos outros,
-# tornando as relações mais evidentes.
-pos = nx.spring_layout(G, k=0.7, iterations=50) # 'k' ajusta a distância entre os nós, 'iterations' a qualidade do layout.
+print(f"Estatística t:  {resultado.statistic:.4f}")
+print(f"Valor p:        {resultado.pvalue:.2e}")
 
-# Define as cores dos nós baseadas no tipo (cliente ou loja)
-node_colors = []
-for node in G.nodes():
-    if G.nodes[node]['type'] == 'cliente':
-        node_colors.append('skyblue')  # Azul para clientes
-    else:
-        node_colors.append('lightcoral') # Vermelho claro para lojas
+alpha = 0.05
+if resultado.pvalue < alpha:
+    print(f"-> valor p ({resultado.pvalue:.2e}) < alpha ({alpha})")
+    print("-> REJEITA H0: há diferença significativa entre os grupos.")
+else:
+    print(f"-> valor p ({resultado.pvalue:.2e}) >= alpha ({alpha})")
+    print("-> NÃO rejeita H0: diferença não é significativa.")
 
-# Define os tamanhos dos nós (clientes maiores, lojas menores)
-node_sizes = [600 if G.nodes[node]['type'] == 'cliente' else 400 for node in G.nodes()]
 
-# Define as cores das arestas. Destaca as arestas suspeitas.
-edge_colors = []
-for u, v, data in G.edges(data=True):
-    if data['status'] == 'suspeita':
-        edge_colors.append('red')      # Vermelho para transações suspeitas
-    else:
-        edge_colors.append('gray')     # Cinza para transações legítimas
+# ============================================================
+# PARTE 2: MÉTODO DE NEYMAN-PEARSON
+# ============================================================
+# Foco em controlar dois tipos de erro:
+#   Erro Tipo I  (α): rejeitar H0 quando ela é verdadeira (falso positivo)
+#   Erro Tipo II (β): não rejeitar H0 quando ela é falsa  (falso negativo)
+# Poder do teste = 1 - β
 
-# Define as larguras das arestas. Arestas suspeitas podem ser mais grossas.
-edge_widths = [2.5 if data['status'] == 'suspeita' else 1 for u, v, data in G.edges(data=True)]
+print("\n" + "=" * 60)
+print("MÉTODO DE NEYMAN-PEARSON")
+print("=" * 60)
 
-# --- Visualização do Grafo ---
+# Contexto: comparar dois tratamentos para doença crônica
+tratamento_A = np.random.normal(loc=60, scale=10, size=100)
+tratamento_B = np.random.normal(loc=65, scale=10, size=100)
 
-# Cria uma figura e eixos para o plot com um tamanho específico para melhor visualização.
-plt.figure(figsize=(10, 8))
+resultado_np = stats.ttest_ind(tratamento_A, tratamento_B)
+alpha = 0.05
 
-# Desenha os nós
-nx.draw_networkx_nodes(G, pos, node_color=node_colors, node_size=node_sizes, alpha=0.9, edgecolors='black')
+print(f"Estatística t:  {resultado_np.statistic:.4f}")
+print(f"Valor p:        {resultado_np.pvalue:.5f}")
 
-# Desenha as arestas
-nx.draw_networkx_edges(G, pos, edge_color=edge_colors, width=edge_widths, alpha=0.7, arrows=True, arrowstyle='->', arrowsize=20)
+# Decisão formal com base no valor crítico
+graus_liberdade = len(tratamento_A) + len(tratamento_B) - 2
+valor_critico = stats.t.ppf(1 - alpha / 2, df=graus_liberdade)
 
-# Desenha os rótulos dos nós
-node_labels = {node: node for node in G.nodes()}
-nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=10, font_weight='bold')
+print(f"Valor crítico:  ±{valor_critico:.4f}  (α={alpha}, bicaudal)")
+print(f"t observado:    {abs(resultado_np.statistic):.4f}")
 
-# Desenha os rótulos das arestas (informações da transação)
-# Ajustamos o posicionamento dos rótulos para não se sobreporem.
-edge_labels = {}
-for u, v, data in G.edges(data=True):
-    edge_labels[(u, v)] = f"Valor: R${data['weight']:.2f}\nLocal: {data['local']}"
-nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_color='darkgreen', font_size=8, alpha=0.8)
+if abs(resultado_np.statistic) > valor_critico:
+    print("-> t > valor crítico: REJEITA H0.")
+    print("-> Conclusão: Tratamento B é significativamente diferente de A.")
+else:
+    print("-> t <= valor crítico: NÃO rejeita H0.")
 
-# Adiciona um título ao gráfico
-plt.title('Detecção de Fraudes com Grafos no Banco KPL', size=15)
 
-# Remove os eixos para uma visualização mais limpa
-plt.axis('off')
+# ============================================================
+# PARTE 3: VISUALIZANDO ERROS TIPO I e TIPO II
+# ============================================================
+# Simulação: quantas vezes rejeitamos H0 erroneamente
+# quando H0 É verdadeira (Erro Tipo I)?
 
-# Exibe o gráfico
-plt.show()
+print("\n" + "=" * 60)
+print("SIMULAÇÃO: TAXA REAL DE ERRO TIPO I")
+print("=" * 60)
 
-print("\nGrafo gerado com sucesso! Observe a transação em vermelho, indicando uma possível fraude.")
+N_simulacoes = 10_000
+alpha = 0.05
+rejeitou_h0 = 0
 
+for _ in range(N_simulacoes):
+    # Ambos os grupos vêm da mesma distribuição → H0 é verdadeira
+    amostra_a = np.random.normal(loc=50, scale=10, size=30)
+    amostra_b = np.random.normal(loc=50, scale=10, size=30)
+    _, p = stats.ttest_ind(amostra_a, amostra_b)
+    if p < alpha:
+        rejeitou_h0 += 1
+
+taxa_erro_tipo1 = rejeitou_h0 / N_simulacoes
+print(f"Simulações: {N_simulacoes}")
+print(f"Rejeições errôneas de H0: {rejeitou_h0}")
+print(f"Taxa real de Erro Tipo I: {taxa_erro_tipo1:.3f}  (esperado ≈ {alpha})")
+
+
+# ============================================================
+# PARTE 4: COMPARAÇÃO RESUMIDA DOS MÉTODOS
+# ============================================================
+print("\n" + "=" * 60)
+print("RESUMO: FISHER vs. NEYMAN-PEARSON")
+print("=" * 60)
+comparacao = {
+    "Foco":             ("Evidência pelo valor p",         "Decisão formal com taxas de erro"),
+    "Ferramenta":       ("Valor p",                        "Estatística de teste + valor crítico"),
+    "Erro Tipo II":     ("Não considera explicitamente",   "Controla explicitamente (β)"),
+    "Poder do teste":   ("Não faz parte do método",        "1 - β, fundamental no planejamento"),
+}
+
+for criterio, (fisher, np_) in comparacao.items():
+    print(f"\n{criterio}:")
+    print(f"  Fisher:         {fisher}")
+    print(f"  Neyman-Pearson: {np_}")

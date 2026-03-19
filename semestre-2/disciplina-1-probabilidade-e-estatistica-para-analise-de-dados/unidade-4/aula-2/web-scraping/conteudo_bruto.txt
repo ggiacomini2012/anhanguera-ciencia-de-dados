@@ -1,0 +1,210 @@
+=== Significância estatística ===
+Significância estatística
+10s
+10s
+1
+x
+
+Olá! Nesta aula, exploraremos a significância estatística, que é um conceito essencial em estatística, pois nos permite determinar se os resultados de um experimento são devido ao acaso ou se há uma evidência real de um efeito.
+
+Compreender como aplicar métodos de significância é crucial para se tomar decisões informadas em diversas áreas, como medicina, marketing e ciências sociais.
+
+Faça o download do arquivo
+
+=== Ponto de Partida ===
+Ponto de Partida
+
+A significância estatística nos ajuda a avaliar se os resultados de um experimento ou análise são meramente coincidências ou se há uma evidência estatística real de uma diferença ou efeito. Esse conceito é fundamental para se evitar conclusões equivocadas e tomar decisões baseadas em dados.
+
+O método de Fisher, desenvolvido por Ronald Fisher, é amplamente utilizado em testes de significância; ele introduziu o conceito de valor p, que mede a probabilidade de obtermos um resultado tão extremo quanto o observado, assumindo que a hipótese nula seja verdadeira. A hipótese nula geralmente representa a ausência de efeito ou diferença, enquanto a hipótese alternativa indica o efeito esperado.
+
+Por outro lado, o método de Neyman-Pearson, desenvolvido por Jerzy Neyman e Egon Pearson, concentra-se na comparação entre duas hipóteses: a nula e a alternativa. Esse método visa minimizar dois tipos de erro: o erro tipo I (falso positivo) e o erro tipo II (falso negativo). Neyman e Pearson introduziram o conceito de "nível de significância" e "poder do teste" para formalizar a tomada de decisão.
+
+Diante disso, imagine que você é um pesquisador em uma empresa farmacêutica e está conduzindo um estudo para comparar a eficácia de dois novos medicamentos, A e B, no tratamento de uma doença crônica. Você decidiu utilizar o método de Neyman-Pearson para tomar uma decisão formal sobre qual medicamento é mais eficaz, mas como fazer essa estimativa?
+
+=== Vamos Começar! ===
+Vamos Começar!
+Métodos de significância: Fisher, Neyman-Pearson
+
+No campo da estatística, a significância estatística é um conceito central, pois é a base para a interpretação de resultados de testes estatísticos. Quando se realiza testes de hipóteses ou análises experimentais, a compreensão de como determinar a significância ajuda na tomada de decisões informadas, evitando-se conclusões equivocadas.
+
+Antes de mergulharmos em cada método, é importante que você entenda por que esses métodos são importantes. A significância estatística nos permite avaliar se os resultados de um experimento ou análise se deram devido ao acaso ou se há uma evidência estatística real de uma diferença ou efeito. O uso adequado dos métodos de significância é fundamental em áreas como medicina (para avaliar a eficácia de tratamentos), marketing (para testes de campanha) e ciência social (para avaliar comportamentos populacionais).
+
+O método de Fisher, desenvolvido por Ronald Fisher, é amplamente utilizado em testes de significância. Ele introduziu o conceito de valor p, que mede a probabilidade de obtermos um resultado tão extremo quanto o observado, assumindo que a hipótese nula seja verdadeira. A hipótese nula (H0) geralmente representa a ausência de efeito ou diferença, enquanto a hipótese alternativa (H1) indica o efeito esperado.
+
+O valor p indica o nível de significância; se o valor p for pequeno (geralmente menor que 0,05), rejeitaremos a hipótese nula e aceitaremos que o resultado é estatisticamente significativo, no entanto, se o valor p for maior que o nível de significância definido, não haverá evidência suficiente para rejeitar H0.
+
+O método de Neyman-Pearson, desenvolvido por Jerzy Neyman e Egon Pearson, é uma abordagem alternativa ao método de Fisher, concentrando-se na comparação entre duas hipóteses, a nula (H0) e a alternativa (H1). O objetivo principal do método de Neyman-Pearson é minimizar dois tipos de erro:
+
+Erro Tipo I (falso positivo): rejeitar a hipótese nula quando ela é verdadeira.
+Erro Tipo II (falso negativo): não rejeitar a hipótese nula quando ela é falsa.
+
+Ao contrário do método de Fisher, que se baseia na probabilidade do valor p, Neyman e Pearson introduziram o conceito de "nível de significância" (a) e "poder do teste" (1 - ß). O nível de significância a define a probabilidade de se cometer um erro do tipo I, enquanto o poder do teste indica a capacidade de se detectar uma diferença quando ela realmente existe.
+
+Valores p e sua interpretação
+
+O valor p é um conceito central no método de Fisher e também é relevante no contexto do método de Neyman-Pearson, no entanto, a forma como o valor p é interpretado e utilizado pode diferir entre os dois métodos.
+
+No método de Fisher, o valor p é a principal ferramenta para se avaliar a significância estatística dos resultados. Fisher introduziu o valor p como uma medida da evidência contra a hipótese nula (H0).
+
+Definição do valor p:
+
+- O valor p é a probabilidade de se observar um resultado tão extremo quanto ou mais extremo do que o resultado observado, assumindo que a hipótese nula é verdadeira.
+
+Interpretação:
+
+- Valor p pequeno: indica que os resultados observados são improváveis sob a hipótese nula, fornecendo evidência contra a hipótese nula.
+
+- Valor p grande: indica que os resultados observados são consistentes com a hipótese nula, fornecendo pouca ou nenhuma evidência contra a hipótese nula.
+
+Decisão:
+
+- Se o valor p é menor que o nível de significância (a), rejeitamos a hipótese nula.
+
+- Se o valor p é maior que o nível de significância, não rejeitamos a hipótese nula.
+
+No método de Neyman-Pearson, o valor p é utilizado, mas não é o foco principal. Neyman e Pearson introduziram uma abordagem mais formal para testar hipóteses, baseada em taxas de erro e poder do teste.
+
+Erro tipo I (a):
+
+O erro tipo I ocorre quando a hipótese nula é rejeitada incorretamente (falso positivo).
+
+A taxa de erro tipo I é controlada pelo nível de significância (a), que é a probabilidade de se cometer um erro tipo I.
+
+Erro tipo II (ß):
+
+- O erro tipo II ocorre quando a hipótese nula não é rejeitada quando deveria ser (falso negativo).
+
+- A taxa de erro tipo II é representada por ß.
+
+Poder do teste (1 - ß):
+
+- O poder do teste é a probabilidade de se rejeitar corretamente a hipótese nula quando a hipótese alternativa é verdadeira.
+
+Regra de decisão:
+
+- Neyman e Pearson introduziram a ideia de uma regra de decisão baseada em uma função de teste que maximiza o poder do teste para um dado nível de significância.
+
+- A regra de decisão é binária: rejeitar ou não rejeitar a hipótese nula com base na comparação de uma estatística de teste com um valor crítico.
+
+Utilização do valor p:
+
+- O valor p pode ser utilizado como uma ferramenta auxiliar para tomar decisões, mas a decisão final é baseada na comparação da estatística de teste com um valor crítico.
+
+- A decisão é tomada de forma mais formal e estruturada, considerando tanto o erro tipo I quanto o erro tipo II.
+
+Comparação entre os métodos:
+
+Foco:
+
+- Fisher: Foca a interpretação do valor p e a evidência contra a hipótese nula.
+
+- Neyman-Pearson: foca a tomada de decisão baseada em taxas de erro e poder do teste.
+
+Decisão:
+
+- Fisher: a decisão é baseada na interpretação do valor p em relação ao nível de significância.
+
+- Neyman-Pearson: a decisão é baseada na comparação da estatística de teste com um valor crítico, controlando os erros tipo I e tipo II.
+
+Erro tipo II e poder:
+
+- Fisher: não considera explicitamente o erro tipo II e o poder do teste.
+
+- Neyman-Pearson: considera explicitamente tanto o erro tipo II quanto o poder do teste.
+
+Aplicação:
+
+- Fisher: amplamente utilizado em contextos em que a interpretação da evidência é mais importante do que a tomada de decisão formal.
+
+- Neyman-Pearson: utilizado em contextos em que a tomada de decisão formal e o controle das taxas de erro são cruciais.
+
+=== Siga em Frente... ===
+Siga em Frente...
+Implementação de testes de significância em R
+
+Imagine que estamos conduzindo um teste clínico para verificar se um novo medicamento é eficaz em comparação com um placebo; para tanto, utilizamos o método de Fisher para interpretar o valor p.
+
+> # Gerar dados fictícios de um teste clínico> set.seed(123)> grupo_tratamento <- rnorm(100, mean = 5.5, sd = 1)> grupo_controle <- rnorm(100, mean = 5, sd = 1)> > # Comparar as médias dos dois grupos> resultado_teste <- t.test(grupo_tratamento, grupo_controle)> print(resultado_teste)         Welch Two Sample t-test data:  grupo_tratamento and grupo_controlet = 5.2487, df = 197.35, p-value = 3.941e-07alternative hypothesis: true difference in means is not equal to 095 percent confidence interval: 0.4357138 0.9601916sample estimates:mean of x mean of y  5.590406  4.892453 
+Valor p: o valor p é 0,0000397, que é muito menor que o nível de significância comum (0.05), e isso indica que há evidências estatísticas suficientes para se rejeitar a hipótese nula de que não há diferença entre os grupos de tratamento e controle.
+
+Imagine que estamos comparando a eficácia de dois tratamentos diferentes e utilizamos o método de Neyman-Pearson para tomar uma decisão formal.
+
+> # Simular dados para dois tratamentos> tratamento_A <- rnorm(100, mean = 60, sd = 10)> tratamento_B <- rnorm(100, mean = 65, sd = 10)> > # Teste t de Student para comparar as médias> resultado_teste_tratamento <- t.test(tratamento_A, tratamento_B)> print(resultado_teste_tratamento)         Welch Two Sample t-test data:  tratamento_A and tratamento_Bt = -2.439, df = 196.44, p-value = 0.01562alternative hypothesis: true difference in means is not equal to 095 percent confidence interval: -6.209067 -0.657173sample estimates:mean of x mean of y  61.20465  64.63777 
+
+O valor p é 0.01562, que é menor que o nível de significância comum (0.05), e isso indica que há evidências estatísticas suficientes para rejeitar a hipótese nula de que as médias dos dois tratamentos são iguais.
+
+Com base na comparação da estatística de teste com o valor crítico, rejeitamos a hipótese nula e concluímos que há uma diferença significativa entre os tratamentos A e B.
+
+Erro tipo I (a):
+
+- O nível de significância (a) é 0.05. O valor p de 0.01562 é menor que 0.05, indicando que a probabilidade de se observar um resultado tão extremo quanto ou mais extremo do que o resultado observado, assumindo que a hipótese nula é verdadeira, é muito baixa.
+
+- Portanto, rejeitamos a hipótese nula com uma taxa de erro tipo I controlada em 5%.
+
+Erro tipo II (ß) e poder do teste (1 - ß):
+
+- Embora o valor p não forneça informações diretas sobre o erro tipo II e o poder do teste, a abordagem de Neyman-Pearson considera esses aspectos ao planejar o experimento e determinar o tamanho da amostra.
+
+- O poder do teste é a probabilidade de rejeitar corretamente a hipótese nula quando a hipótese alternativa é verdadeira. Um teste bem planejado deve ter um poder alto (geralmente 80% ou mais).
+
+Regra de decisão:
+
+- A regra de decisão de Neyman-Pearson envolve a comparação da estatística de teste (t = -2.439) com um valor crítico determinado pelo nível de significância e pelo poder do teste.
+
+- Neste caso, a estatística de teste é significativa, pois o valor p associado é menor que o nível de significância.
+
+Embora o valor p seja utilizado no contexto de Neyman-Pearson, ele é apenas uma parte da abordagem mais ampla que envolve o controle dos erros tipo I e tipo II e a maximização do poder do teste. A decisão final no método de Neyman-Pearson é baseada na comparação da estatística de teste com um valor crítico, considerando tanto a significância estatística quanto o poder do teste.
+
+=== Vamos Exercitar? ===
+Vamos Exercitar?
+
+Imagine que você é um pesquisador em uma empresa farmacêutica e está conduzindo um estudo para comparar a eficácia de dois novos medicamentos, A e B, no tratamento de uma doença crônica. Você, então, decide utilizar o método de Neyman-Pearson para tomar uma decisão formal sobre qual medicamento é mais eficaz, mas como fazer essa estimativa? Vamos para a solução!
+
+Passo a passo da resolução
+
+1.Gerar dados fictícios:
+
+> # Simular dados para dois tratamentos> set.seed(123)> tratamento_A <- rnorm(100, mean = 60, sd = 10)> tratamento_B <- rnorm(100, mean = 65, sd = 10)
+
+2.Realizar o teste t de Student:
+
+> # Teste t de Student para comparar as médias> resultado_teste_tratamento <- t.test(tratamento_A, tratamento_B)> print(resultado_teste_tratamento)
+
+3.Interpretação dos resultados:
+
+Welch Two Sample t-test data:  tratamento_A and tratamento_Bt = -2.2714, df = 197.35, p-value = 0.0242alternative hypothesis: true difference in means is not equal to 095 percent confidence interval: -5.6428618 -0.3980841sample estimates:mean of x mean of y  60.90406  63.92453 
+
+Tomada de decisão:
+
+Erro Tipo I (a): O nível de significância (a) é 0.05. O valor p de 0.01562 é menor que 0.05, indicando que a probabilidade de observar um resultado tão extremo quanto, ou mais extremo do que, o resultado observado, assumindo que a hipótese nula é verdadeira, é muito baixa. Portanto, rejeitamos a hipótese nula com uma taxa de erro tipo I controlada em 5%.
+Erro Tipo II (ß) e Poder do Teste (1 - ß): Embora o valor p não forneça informações diretas sobre o erro tipo II e o poder do teste, a abordagem de Neyman-Pearson considera esses aspectos ao planejar o experimento e determinar o tamanho da amostra. O poder do teste é a probabilidade de rejeitar corretamente a hipótese nula quando a hipótese alternativa é verdadeira. Um teste bem planejado deve ter um poder alto (geralmente 80% ou mais).
+Regra de Decisão: A regra de decisão de Neyman-Pearson envolve a comparação da estatística de teste (t = -2.439) com um valor crítico determinado pelo nível de significância e pelo poder do teste. Neste caso, a estatística de teste é significativa, pois o valor p associado é menor que o nível de significância.
+
+Com base na análise, concluímos que há uma diferença significativa entre os tratamentos A e B, portanto, podemos afirmar que o medicamento B é mais eficaz que o medicamento A no tratamento da doença crônica.
+
+=== Saiba mais ===
+Saiba mais
+Métodos de significância: Fisher, Neyman-Pearson:
+
+NETO, P. L. de O. C. Estatística. São Paulo: Editora Blucher, 2006.
+
+Valores p e sua interpretação:
+
+TRIOLA, M. F. Introdução à estatística. Rio de Janeiro: Grupo GEN, 2024.
+
+Implementação de testes de significância em R.
+
+TRIOLA, M. F. Introdução à estatística. Rio de Janeiro: Grupo GEN, 2024.
+
+=== Referências ===
+Referências
+
+FERREIRA, R. G. C. et al. Preparação e análise exploratória de dados. Porto Alegre: SAGAH, 2021.
+
+GIOLO, S. R. Introdução à análise de dados categóricos com aplicações. São Paulo: Editora Blucher, 2017.
+
+MILANI, A. M. P. et al. Visualização de dados. Porto Alegre: Grupo A, 2020.
+
+THURMAN, P. W. Estatística. São Paulo: Saraiva Uni, 2012. (Série Fundamentos).
+
