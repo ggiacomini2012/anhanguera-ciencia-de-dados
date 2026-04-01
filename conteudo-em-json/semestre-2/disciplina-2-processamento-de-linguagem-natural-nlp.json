@@ -1,0 +1,44 @@
+{
+  "unidades": [
+    {
+      "titulo": "UNIDADE 1 - O Potencial da NLP",
+      "aulas": [
+        "Linguagem Computacional",
+        "Dados Gerando Informação",
+        "Homem Máquina",
+        "Linguagem Natural",
+        "Encerramento da Unidade"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 2 - NLP e Intenligência Artificial",
+      "aulas": [
+        "Tradutores e Compiladores",
+        "Processamento de diálogos",
+        "Diálogo linguístico computacional",
+        "Linguística aplicada com Python",
+        "Encerramento da Unidade"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 3 - Aplicações NLP",
+      "aulas": [
+        "Modelos de Aprendizagem",
+        "NLP Supervisionada",
+        "NLP Não Supervisionada",
+        "Agrupamento de Informação",
+        "Encerramento da Unidade"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 4 - NLP e Negócios",
+      "aulas": [
+        "Ferramenta Python NTKL",
+        "Ferramenta Python Spacy",
+        "Ferramenta Python Pandas",
+        "Ferramenta Python Matplotlib",
+        "Encerramento da Unidade"
+      ]
+    }
+  ]
+}

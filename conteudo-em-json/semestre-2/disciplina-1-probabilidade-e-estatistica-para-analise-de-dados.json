@@ -1,0 +1,38 @@
+{
+  "unidades": [
+    {
+      "titulo": "UNIDADE 1 - Fundamentos de Probabilidade e Estatística para Análise de Dados",
+      "aulas": []
+    },
+    {
+      "titulo": "UNIDADE 2 - Estimativas Estatísticas na Distribuição de Dados",
+      "aulas": [
+        "Medidas de Tendência Central",
+        "Medidas de Dispersão",
+        "Estimativas Baseadas na Distribuição de Dados",
+        "Aplicações Estatísticas em R",
+        "Encerramento da Unidade"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 3 - Amostragem e Distribuição de Dados",
+      "aulas": [
+        "Amostragem",
+        "Distribuições de Probabilidade",
+        "Análise de Distribuições em R",
+        "Simulação de Amostragem",
+        "Encerramento da Unidade"
+      ]
+    },
+    {
+      "titulo": "UNIDADE 4 - Análise de Experimentos Estatísticos",
+      "aulas": [
+        "Testes Estatísticos",
+        "Significância Estatística",
+        "Testes de Hipóteses",
+        "Análise e Interpretação dos Resultados",
+        "Encerramento da Unidade"
+      ]
+    }
+  ]
+}
