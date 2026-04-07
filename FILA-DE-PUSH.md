@@ -25,7 +25,7 @@ git push origin <HASH>:refs/heads/main
 - [x] `e98d6da` — `feat: infraestrutura de automação para raspagem de aulas`
 - [x] `35c5dfd` — `feat: organização das disciplinas do Semestre 2`
 - [x] `8f664fb` — `feat: S2-D1-U4: Conteúdos Adicionais via Web Scraping`
-- [ ] `a44d754` — `fix: S2-D1-U2-A2: Correção de typo no nome do arquivo`
-- [ ] `ae2ec37` — `fix: S2-D1-U3-A2: Correção de typo no nome do arquivo`
+- [x] `a44d754` — `fix: S2-D1-U2-A2: Correção de typo no nome do arquivo`
+- [x] `ae2ec37` — `fix: S2-D1-U3-A2: Correção de typo no nome do arquivo`
 - [ ] `911a83b` — `feat(infra): S2-D1: Roteiro de automação do Robô Escaneador (AVA)`
 
