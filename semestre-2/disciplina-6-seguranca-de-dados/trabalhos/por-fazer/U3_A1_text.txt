@@ -1,0 +1,145 @@
+ 
+ 
+Público 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SEGURANÇA DE DADOS  
+Roteiro 
+Aula Prática 
+ 
+2 
+ 
+Público 
+ 
+ 
+ROTEIRO DE AULA PRÁTICA 
+ 
+NOME DA DISCIPLINA: SEGURANÇA DE DADOS 
+Unidade: 
+U3_SEGURANÇA_NA_INTERNET_DISPOSITIVOS_MÓVEIS_E_TESTES_DE_INTRUSÃO 
+Aula: A1_SEGURANÇA_NA_INTERNET 
+ 
+ 
+OBJETIVOS  
+Definição dos objetivos da aula prática: 
+Entender o conceito e a importância do firewall na segurança de redes. 
+Aprender a configurar regras de firewall para proteger uma rede contra acessos não autorizados. 
+Aplicar as configurações em um ambiente simulado (firewall do Windows). 
+ 
+SOLUÇÃO DIGITAL: 
+Firewall do Windows Defender 
+Abra o Painel de Controle → Sistema e Segurança → Firewall do Windows Defender. 
+Clique em Ativar ou Desativar o Firewall do Windows Defender. 
+Ative o firewall para os três perfis: Domínio, Privado e Público.                                
+ 
+ 
+PROCEDIMENTOS PRÁTICOS E APLICAÇÕES 
+Procedimento/Atividade nº 1  
+Configuração Básica de um Firewall 
+ 
+Atividade proposta: Configurar o firewall do Windows Defender(versão 10 ou 11) 
+ 
+Procedimentos para a realização da atividade: 
+Você é responsável por proteger os computadores de uma pequena empresa que utilizam 
+Windows 10/11. Sua tarefa é configurar o Firewall do Windows Defender para garantir que apenas 
+as conexões essenciais estejam permitidas, enquanto as conexões indesejadas sejam 
+bloqueadas. 
+Tarefas: 
+1. Ativar o Firewall do Windows 
+Abra o Painel de Controle → Sistema e Segurança → Firewall do Windows Defender. 
+Clique em Ativar ou Desativar o Firewall do Windows Defender. 
+
+ 
+3 
+ 
+Público 
+Ative o firewall para os três perfis: Domínio, Privado e Público. 
+Certifique-se de que o Firewall está ativo nos três perfis: Domínio, Privado e Público. 
+ 
+2. Criar Regras de Entrada (Inbound) 
+                 Abra o Firewall do Windows Defender com Segurança Avançada: 
+                 No menu Iniciar, digite "Firewall do Windows Defender" → clique em Configurações    
+                 Avançadas. 
+Permitir conexões HTTP (porta 80) e HTTPS (porta 443) para acesso à web. Clique 
+em Regras de Entrada → Nova Regra e configure. 
+Permitir acesso remoto via RDP (porta 3389)  apenas para o IP 192.168.1.10. Em 
+Regras de Entrada, clique em Nova Regra e configure. 
+Bloquear todas as outras conexões de entrada não especificadas.  Defina a Política 
+Padrão para Bloquear conexões não especificadas e configure o bloqueio de entrada. 
+ 
+3. Criar Regras de Saída (Outbound) 
+      Abra Regras de Saída → Nova Regra. 
+Permitir apenas tráfego de saída para navegação web (portas 80 e 443) e DNS (porta 
+53). Escolha Porta → TCP → portas 80 e 443 e permita a conexão. Permitir DNS: 
+     Escolha Porta → UDP → porta 53 e e permita a conexão. 
+Bloquear todas as outras conexões de saída. Defina a Política Padrão para Bloquear 
+conexões não especificadas e configure o bloqueio de saída. 
+ 
+4. Teste e Validação: 
+Documente as etapas com capturas de tela. 
+Utilize o Prompt de Comando (ping)  ou ferramentas de teste para verificar se as 
+conexões estão funcionando conforme configurado. 
+                   Teste o acesso remoto via RDP do IP 192.168.1.10. 
+                   Teste as conexões bloqueadas: 
+       Use o comando ping para tentar acessar outros serviços ou IPs não permitidos. 
+                   Faça prints das configurações criadas e dos testes realizados, demonstrando que as  
+                   regras funcionam conforme o esperado. 
+ 
+Avaliando os resultados: 
+ 
+A atividade será avaliada com base nos seguintes critérios: 
+1. Configuração correta das regras de entrada e saída. 
+2. Clareza na documentação das etapas realizadas. 
+3. Evidências práticas apresentadas (capturas de tela e logs de teste). 
+
+ 
+4 
+ 
+Público 
+4. Justificativa para cada regra configurada. 
+ 
+Checklist: 
+1. Ativar o Firewall do Windows; 
+2. Criar Regras de Entrada (Inbound); 
+3. Criar Regras de Saída (Outbound); 
+4. Teste e Validação. 
+ 
+ 
+RESULTADOS 
+Resultados do experimento: 
+Ao final dessa aula prática, você deverá enviar um arquivo em word contendo as informações 
+obtidas no experimento em conjunto com um texto conclusivo a respeito das informações 
+obtidas. O arquivo não pode exceder o tamanho de 2Mb. 
+Resultados de Aprendizagem: 
+1. Essa atividade permite que os alunos apliquem na prática os conceitos teóricos  sobre 
+configuração de firewalls, desenvolvendo habilidades essenciais para a proteção de 
+sistemas em ambientes Windows. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
