@@ -1,0 +1,110 @@
+ 
+ 
+Público 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Processamento de Linguagem Natural  
+Roteiro 
+Aula Prática 
+ 
+2 
+ 
+Público 
+ 
+ 
+ROTEIRO DE AULA PRÁTICA 
+ 
+NOME DA DISCIPLINA: Processamento de Linguagem Natural  
+ 
+Unidade: U2_NLP e Inteligência Artificial   
+Aula: A1_Tradutores e Compiladores 
+ 
+ 
+ 
+OBJETIVOS  
+Definição dos objetivos da aula prática: 
+Compreender a importância e aplicação da marcação morfossintática em processamento de 
+linguagem natural (NLP). 
+Realizar normatização textual (remoção de ruídos, stemming, lematização). 
+Aplicar técnicas de segmentação textual para identificar sentenças e palavras em textos. 
+ 
+SOLUÇÃO DIGITAL: Google Colab 
+ 
+LINK SOLUÇÃO DIGITAL (EXCETO ALGETEC):  https://colab.research.google.com/ 
+ 
+PROCEDIMENTOS PRÁTICOS E APLICAÇÕES 
+Procedimento/Atividade nº 1  
+Explorando Técnicas Básicas de NLP com Python 
+ 
+Atividade proposta:  
+1) Escreva um programa em Python para realizar as seguintes tarefas: 
+a) Marcação morfossintática (Part-of-Speech Tagging) em um texto fornecido pelo usuário. 
+b) Normatização textual, incluindo remoção de stopwords, stemming e lematização. 
+c) Segmentação do texto em sentenças e palavras. 
+2) Utilize bibliotecas de NLP como NLTK ou SpaCy para implementar as tarefas. 
+3) Apresente os resultados de cada etapa de processamento. 
+ 
+Procedimentos para a realização da atividade: 
+ 
+1. Acesse o Google Colab e crie um novo notebook. 
+2. Instale e importe as bibliotecas necessárias, como NLTK e SpaCy. 
+
+ 
+3 
+ 
+Público 
+3. Implemente cada funcionalidade de forma separada, mostrando os resultados 
+intermediários. 
+4. Teste o programa com diferentes textos de entrada. 
+ 
+Avaliando os resultados: 
+Responda às seguintes perguntas: 
+1)Qual é a função da marcação morfossintática em NLP? 
+2)Qual é a diferença entre stemming e lematização? 
+3)Quais problemas podem surgir durante a segmentação de textos? 
+Checklist: 
+✓ A marcação morfossintática foi implementada corretamente. 
+✓ Stopwords foram removidas do texto com sucesso. 
+✓ O texto foi processado com stemming e lematização. 
+✓ O texto foi segmentado em sentenças e palavras corretamente 
+ 
+ 
+RESULTADOS 
+Resultados do experimento: 
+Ao final dessa aula prática, você deverá enviar um arquivo em word contendo as informações 
+obtidas no experimento, os cálculos realizados, em conjunto com um texto conclusivo a respeito 
+das informações obtidas. O arquivo não pode exceder o tamanho de 2Mb. 
+• Referências bibliográficas ABNT (quando houver). 
+Resultados de Aprendizagem: 
+Aplicar técnicas básicas de NLP utilizando bibliotecas populares. 
+Entender o impacto da normatização textual para análises posteriores. 
+Realizar operações de segmentação e marcação em textos. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
